@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0ebf8;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* MAIN CONTAINER */
+        .summary-box {
+            background-color: white;
+            padding: 25px 20px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* HEADING */
+        .summary-box h1 {
+            color: purple;
+            margin-bottom: 20px;
+        }
+
+        /* BALANCE BOX */
+        .balance-box {
+            background-color: #f3e9ff;
+            padding: 12px;
+            border-radius: 10px;
+            margin: 0 auto 25px auto;
+            width: 70%;
+            max-width: 250px;
+            text-align: center;
+            box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .balance-box h3 {
+            font-size: 14px;
+            color: #4b0082;
+            margin-bottom: 6px;
+        }
+
+        #currentBalance {
+            font-size: 16px;
+            font-weight: bold;
+            color: #4b0082;
+            margin: 0;
+        }
+
+        /* INCOME & EXPENSES SECTION */
+        .main {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .main div {
+            background-color: #f3e9ff;
+            padding: 10px;
+            border-radius: 10px;
+            width: 120px;
+        }
+
+        .main h3 {
+            font-size: 14px;
+            color: #4b0082;
+            margin-bottom: 8px;
+        }
+
+        #income,
+        #expenses {
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* ADD TRANSACTION BUTTON */
+        #Firstbtn {
+            background-color: purple;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        #Firstbtn:hover {
+            background-color: #5a007a;
+        }
+
+        /* INPUTS & ADD BUTTON */
+        .input-group {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        #TransName,
+        #Amount {
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #aaa;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        #addbtn {
+            padding: 9px 16px;
+            background-color: #4b0082;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 120px;
+        }
+
+        #addbtn:hover {
+            background-color: #36005a;
+        }
+
+        /* TRANSACTION LIST */
+        #list {
+            list-style: none;
+            margin-top: 20px;
+            padding: 0;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #list li {
+            background-color: #efdcf8;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: left;
+            border-left: 5px solid purple;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .list-headers {
+            max-width: 400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            color: #4b0082;
+            padding: 10px 0;
+            border-bottom: 2px solid #ccc;
+        }
+
+
+
+
+        /* RESPONSIVE */
+        @media (max-width: 500px) {
+            .summary-box {
+                padding: 20px 15px;
+            }
+
+            #TransName,
+            #Amount {
+                width: 90%;
+            }
+
+            #addbtn {
+                width: 90%;
+            }
+
+            .main div {
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="summary-box">
+        <h1>Expenses Tracker</h1>
+
+        <div class="balance-box">
+            <h3>Current Balance</h3>
+            <p id="currentBalance">0 Rs</p>
+        </div>
+
+        <div class="main">
+            <div>
+                <h3>Income</h3>
+                <p id="income">20000 Rs</p>
+            </div>
+            <div>
+                <h3>Expenses</h3>
+                <p id="expenses">0 Rs</p>
+            </div>
+        </div>
+
+        <button id="Firstbtn" onclick="AddTransaction()">Add Transactions</button>
+
+        <!-- Inputs section -->
+        <div class="input-group" id="inputGroup">
+            <input type="text" placeholder="Transaction Name" id="TransName">
+            <input type="number" placeholder="Amount" id="Amount">
+            <button id="addbtn" onclick="Add()">Add</button>
+        </div>
+    </div>
+
+    <div class="list-headers">
+        <span>Description</span>
+        <span>Amount</span>
+    </div>
+
+    <ul id="list"></ul>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>
